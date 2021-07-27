@@ -7,26 +7,13 @@
 
 
 struct Person {
-    var name: String {
-        getRandomName()
-    }
-    
-    var surname: String {
-        getRandomSurname()
-    }
-    
-    var phone: String {
-        getRandomPhone()
-    }
-    
-    var email: String {
-        getRandomEmail()
-    }
-    
+    var name: String
+    var surname: String
+    var phone: String
+    var email: String
     var fullName: String {
         "\(name) \(surname)"
     }
-    
 }
 
 let data = DataManager()
@@ -34,7 +21,6 @@ let data = DataManager()
 extension Person {
     private func getRandomName() -> String {
         data.nameList.randomElement() ?? ""
-        
     }
     
     private func getRandomSurname() -> String {
@@ -51,12 +37,20 @@ extension Person {
     }
     
     static func getPersons() -> [Person] {
-        [
-            Person(),
-            Person(),
-            Person(),
-            Person(),
-            Person()
-        ]
+        var persons: [Person] = []
+        
+        for _ in data.nameList {
+            let randomName = data.nameList.randomElement() ?? ""
+            let randomSurname = data.surnameList.randomElement() ?? ""
+            let randomPhone = data.phoneList.randomElement() ?? ""
+            let randomEmail = data.emailList.randomElement() ?? ""
+            
+            persons.append(Person(name: randomName, surname: randomSurname, phone: randomPhone, email: randomEmail))
+            
+        }
+        
+        return persons
     }
 }
+
+
