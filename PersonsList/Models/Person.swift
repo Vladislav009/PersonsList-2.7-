@@ -40,10 +40,20 @@ extension Person {
         var persons: [Person] = []
         
         for _ in data.nameList {
-            let randomName = data.nameList.randomElement() ?? ""
-            let randomSurname = data.surnameList.randomElement() ?? ""
-            let randomPhone = data.phoneList.randomElement() ?? ""
-            let randomEmail = data.emailList.randomElement() ?? ""
+            data.nameList.shuffle()
+            data.emailList.shuffle()
+            data.phoneList.shuffle()
+            data.surnameList.shuffle()
+            
+            let randomName = data.nameList.first ?? ""
+            let randomSurname = data.surnameList.first ?? ""
+            let randomPhone = data.phoneList.first ?? ""
+            let randomEmail = data.emailList.first ?? ""
+            
+            data.nameList.removeFirst()
+            data.surnameList.removeFirst()
+            data.phoneList.removeFirst()
+            data.emailList.removeFirst()
             
             persons.append(Person(name: randomName, surname: randomSurname, phone: randomPhone, email: randomEmail))
             
