@@ -9,7 +9,7 @@ import UIKit
 
 class ContactListTableViewController: UITableViewController {
     
-    private var personList = Person.getPersons()
+    var contactList: [Person]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,14 +18,14 @@ class ContactListTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        personList.count
+        contactList.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contact", for: indexPath)
         
-        let person = personList[indexPath.row]
+        let person = contactList[indexPath.row]
         
         var content = cell.defaultContentConfiguration()
         content.text = person.fullName
@@ -38,7 +38,7 @@ class ContactListTableViewController: UITableViewController {
     // MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let person = personList[indexPath.row]
+        let person = contactList[indexPath.row]
         performSegue(withIdentifier: "showDetail", sender: person)
     }
     
@@ -49,15 +49,7 @@ class ContactListTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let detailContactVC = segue.destination as? DetailContactViewController {
-            detailContactVC.person = sender as? Person
-        } else if let tabBarController = segue.destination as? UITabBarController {
-            guard let viewControllers = tabBarController.viewControllers else { return }
-            for viewController in viewControllers {
-                if let contactDetailListTVC = viewController as? ContactDetailListTableViewController {
-                    contactDetailListTVC.contactList = personList
-                }
-            }
-        }
+        guard let detailContactVC = segue.destination as? DetailContactViewController else { return }
+        detailContactVC.person = sender as? Person
     }
 }

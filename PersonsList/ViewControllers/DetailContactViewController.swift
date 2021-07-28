@@ -17,8 +17,8 @@ class DetailContactViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        phoneTextField.text = "Phone: \(person.details.phone)"
-        emailTextField.text = "Email: \(person.details.email )"
+        phoneTextField.text = "Phone: \(person.details.first ?? "")"
+        emailTextField.text = "Email: \(person.details.last ?? "")"
         
         navigationItem.title = person.fullName
     }

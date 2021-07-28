@@ -9,16 +9,11 @@
 struct Person {
     let name: String
     let surname: String
-    let details: DetailPerson
+    let details: [String]
     
     var fullName: String {
         "\(name) \(surname)"
     }
-}
-
-struct DetailPerson {
-    let phone: String
-    let email: String
 }
 
 let data = DataManager()
@@ -33,6 +28,7 @@ extension Person {
             data.phoneList.shuffle()
             data.surnameList.shuffle()
             
+            
             let randomName = data.nameList.first ?? ""
             let randomSurname = data.surnameList.first ?? ""
             let randomPhone = data.phoneList.first ?? ""
@@ -46,8 +42,11 @@ extension Person {
             persons.append(Person(
                 name: randomName,
                 surname: randomSurname,
-                details: DetailPerson(phone: randomPhone, email: randomEmail)
-                )
+                details: [
+                    randomPhone,
+                    randomEmail
+                ]
+            )
             )
             
         }
