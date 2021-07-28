@@ -49,6 +49,37 @@
             </objects>
             <point key="canvasLocation" x="2975.36231884058" y="155.35714285714286"/>
         </scene>
+        <!--Detail list-->
+        <scene sceneID="ygf-w4-Sug">
+            <objects>
+                <tableViewController id="lvy-Gc-9qJ" customClass="ContactDetailListTableViewController" customModule="PersonsList" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="NDW-cM-3gm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailContact" id="MdV-51-UTd">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MdV-51-UTd" id="QAU-Vd-o0B">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="lvy-Gc-9qJ" id="9ZR-3f-FjH"/>
+                            <outlet property="delegate" destination="lvy-Gc-9qJ" id="XNl-bJ-x6b"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Detail list" selectedImage="line.horizontal.2.decrease.circle" catalog="system" id="o4T-Te-YfB"/>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="twL-DP-15t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2975" y="883"/>
+        </scene>
         <!--Detail Contact View Controller-->
         <scene sceneID="smG-9i-TY3">
             <objects>
@@ -58,7 +89,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mAa-Kq-6cR">
-                                <rect key="frame" x="16" y="150" width="170.5" height="61"/>
+                                <rect key="frame" x="16" y="98" width="170.5" height="61"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone: 88005553535" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bPr-hK-Ch7">
                                         <rect key="frame" x="0.0" y="0.0" width="170.5" height="20.5"/>
@@ -82,7 +113,7 @@
                             <constraint firstItem="mAa-Kq-6cR" firstAttribute="top" secondItem="WkY-aQ-qVf" secondAttribute="top" constant="10" id="pzF-fq-QFg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="kXq-Yx-wlR"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="kXq-Yx-wlR"/>
                     <connections>
                         <outlet property="emailTextField" destination="vwi-Ly-bqp" id="qtr-2U-mCf"/>
                         <outlet property="phoneTextField" destination="bPr-hK-Ch7" id="rOj-vL-A9c"/>
@@ -99,11 +130,13 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="itj-MT-QEo"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Zn6-G9-APJ">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="qjx-Ng-Dns" kind="relationship" relationship="viewControllers" id="EQZ-UW-U5H"/>
+                        <segue destination="lvy-Gc-9qJ" kind="relationship" relationship="viewControllers" id="ovC-TI-5wg"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NTv-e0-tCZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -131,6 +164,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="line.horizontal.2.decrease.circle" catalog="system" width="128" height="121"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

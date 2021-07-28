@@ -10,17 +10,17 @@ import UIKit
 class ContactListTableViewController: UITableViewController {
     
     private var personList = Person.getPersons()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         personList.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contact", for: indexPath)
@@ -31,7 +31,7 @@ class ContactListTableViewController: UITableViewController {
         content.text = person.fullName
         
         cell.contentConfiguration = content
-
+        
         return cell
     }
     
@@ -41,16 +41,23 @@ class ContactListTableViewController: UITableViewController {
         let person = personList[indexPath.row]
         performSegue(withIdentifier: "showDetail", sender: person)
     }
-
-
+    
+    
     
     // MARK: - Navigation
-
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let detailContactVC = segue.destination as? DetailContactViewController else { return }
-        detailContactVC.person = sender as? Person
+        
+        if let detailContactVC = segue.destination as? DetailContactViewController {
+            detailContactVC.person = sender as? Person
+        } else if let tabBarController = segue.destination as? UITabBarController {
+            guard let viewControllers = tabBarController.viewControllers else { return }
+            for viewController in viewControllers {
+                if let contactDetailListTVC = viewController as? ContactDetailListTableViewController {
+                    contactDetailListTVC.contactList = personList
+                }
+            }
+        }
     }
-    
-
 }
